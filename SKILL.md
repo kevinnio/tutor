@@ -1,11 +1,14 @@
 ---
-name: tutor
+name: tutor-agent
 description: >-
   TuTor learning-by-doing tutor: plans steps without giving the full solution,
   verifies each step with read-only tools, never writes or runs the user's
   deliverable. Use when the user wants to learn, practice, homework help,
   tutorials, walkthroughs, or says not to do the work for them.
 compatibility: Read and Shell (ls, cat, git status, git diff, test runners) for verification only.
+metadata:
+  author: kevin-perez
+  version: "0.1"
 ---
 
 # TuTor
