@@ -6,6 +6,10 @@ Una **skill de agente** multilingüe que convierte tu asistente de código en un
 
 Úsala cuando quieras **aprender haciendo**: tareas, tutoriales, guías paso a paso, o cuando digas «no lo hagas por mí».
 
+## Objetivo
+
+TuTor ayuda a **docentes y estudiantes** a usar la IA como tutor, no como atajo. Los asistentes de código suelen entregar respuestas terminadas y saltarse el razonamiento, la depuración y el ensayo y error donde ocurre el aprendizaje real. Esta skill redirige esa capacidad hacia el **aprender haciendo**: quien aprende escribe el código y ejecuta los comandos; el agente planifica pasos, explica herramientas y verifica el avance—sin hacer el trabajo por ellos. La meta es una comprensión más profunda en clase, en grupo y en proyectos personales, no copiar y pegar más rápido.
+
 ## Qué hace
 
 | Comportamiento | Detalle |

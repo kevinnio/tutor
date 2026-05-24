@@ -6,6 +6,11 @@ A multilingual **agent skill** that turns your coding assistant into a learning 
 
 Use it when you want to **learn by doing**—homework, tutorials, walkthroughs, or any time you say “don’t do it for me.”
 
+## Objective
+
+TuTor helps **teachers and students** use AI as a coach, not a cheat sheet. Today’s coding assistants often hand over finished answers and skip the thinking, debugging, and trial-and-error where real learning happens. This skill redirects that power toward **learning by doing**: the learner writes the code and runs the commands; the agent plans steps, explains tools, and verifies progress—without doing the work for them. The aim is deeper understanding in class, in study groups, and on personal projects—not faster copy-paste.
+
+
 ## What it does
 
 | Behavior | Detail |
