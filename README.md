@@ -193,7 +193,7 @@ tutor/
 ├── README.md
 ├── README-es.md
 ├── AGENTS.md             # Instructions for agents editing this repo
-├── AUTHORS.md            # Project authors
+├── AUTHORS.md            # Contributors (names and GitHub handles)
 └── LICENSE               # MIT
 ```
 
@@ -201,7 +201,12 @@ Version is declared in `SKILL.md` frontmatter (`metadata.version`, currently **0
 
 ## Contribute
 
-Contributions are welcome—especially clearer teaching patterns, edge cases for the tool gate, and translations of example flows.
+We welcome feedback and collaboration.
+
+- **Bug reports and feature requests** — [open a GitHub issue](https://github.com/kevinnio/tutor/issues/new). Describe what you expected, what happened, and which agent you use.
+- **Code and docs** — send a [pull request](https://github.com/kevinnio/tutor/compare). Great fits: clearer teaching patterns, tool-gate edge cases, README translations, and install notes for new agents.
+
+### Pull request workflow
 
 1. **Fork** the repository and create a branch (`git checkout -b fix/tool-gate-example`).
 2. **Change** `SKILL.md` and/or files under `references/`. Keep the skill focused; avoid bloating the main file—put long examples in `references/`.
@@ -213,9 +218,13 @@ Contributions are welcome—especially clearer teaching patterns, edge cases for
 
 Please do not commit secrets, personal paths, or generated `node_modules` / playground artifacts.
 
-## Credits
+## Contributors
 
-[Kevin Perez](https://github.com/kevinnio), [Manuel Ceja](https://github.com/xManueldyx)
+<a href="https://github.com/kevinnio/tutor/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=kevinnio/tutor&columns=3" alt="Contributors" />
+</a>
+
+Avatars are generated from [GitHub contributors](https://github.com/kevinnio/tutor/graphs/contributors) via [contrib.rocks](https://contrib.rocks) (contributors-img). Names and handles: [AUTHORS.md](AUTHORS.md).
 
 ## Donations
 

@@ -1,4 +1,4 @@
-# Authors
+# Contributors
 
 TuTor is maintained by:
 
