@@ -1,5 +1,5 @@
 ---
-name: tutor-agent
+name: tutor
 description: >-
   TuTor learning-by-doing tutor: plans steps without giving the full solution,
   verifies each step with read-only tools, never writes or runs the user's
