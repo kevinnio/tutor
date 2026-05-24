@@ -27,89 +27,73 @@ Material de referencia opcional en [`references/`](references/):
 
 ## Instalación
 
-TuTor es una carpeta con `SKILL.md` más `references/`. El nombre de la skill en el frontmatter es `tutor`, así que el directorio de instalación debe llamarse **`tutor`**.
+**Repositorio:** [github.com/kevinnio/tutor](https://github.com/kevinnio/tutor)
 
-### Instalación rápida (cualquier agente)
+TuTor se distribuye como `SKILL.md` más `references/`. El `name` del frontmatter debe ser `tutor`.
 
-Clona este repositorio en una carpeta de skill `tutor` (personal = todos los proyectos, de proyecto = solo ese repo):
+### Instalar con Skills CLI (recomendado)
+
+Usa la [Skills CLI](https://github.com/vercel-labs/skills) ([skills.sh](https://skills.sh)) para instalar en tus agentes de código. Detecta las herramientas instaladas y escribe en los directorios correctos.
+
+**Usuario (todos los proyectos)** — recomendado la primera vez:
 
 ```bash
-# Personal (recomendado)
-git clone https://github.com/kevin-perez/tutor.git ~/.cursor/skills/tutor
+npx skills add kevinnio/tutor -g -y
 ```
 
-Para una copia **local al proyecto**, usa la misma ruta dentro de tu repo (ejemplos abajo).
-
-Después de instalar, inicia una **nueva sesión** del agente para que cargue las skills.
-
-### [Cursor](https://cursor.com)
-
-| Ámbito | Ruta |
-|--------|------|
-| Personal | `~/.cursor/skills/tutor/` |
-| Proyecto | `.cursor/skills/tutor/` |
+**Solo este proyecto** (comparte con clase o equipo vía git):
 
 ```bash
-git clone https://github.com/kevin-perez/tutor.git ~/.cursor/skills/tutor
+npx skills add kevinnio/tutor -y
 ```
 
-En el chat, pide aprender algo (p. ej. «Enséñame a crear un CLI de tareas—no lo escribas por mí») o invoca la skill si tu versión de Cursor expone `/tutor`.
-
-Documentación: [Cursor Agent Skills](https://cursor.com/docs/context/skills).
-
-### [Claude Code](https://code.claude.com)
-
-| Ámbito | Ruta |
-|--------|------|
-| Personal | `~/.claude/skills/tutor/` |
-| Proyecto | `.claude/skills/tutor/` |
+**Agentes concretos** (sin el selector interactivo):
 
 ```bash
-git clone https://github.com/kevin-perez/tutor.git ~/.claude/skills/tutor
+npx skills add kevinnio/tutor -g -a cursor -a claude-code -a opencode -y
 ```
 
-Ejecuta `/tutor` o describe un objetivo de aprendizaje; Claude carga la skill cuando es relevante.
+| Flag | Significado |
+|------|-------------|
+| `-g`, `--global` | Instalación de usuario (`~/…/skills/`) |
+| (sin `-g`) | Solo en el proyecto actual |
+| `-a`, `--agent` | Agente(s), p. ej. `cursor`, `claude-code`, `opencode`, `codex`, `windsurf` |
+| `-y`, `--yes` | Sin preguntas interactivas |
 
-Documentación: [Claude Code skills](https://code.claude.com/docs/en/skills).
+Vista previa: `npx skills add kevinnio/tutor --list`. Lista de agentes: [vercel-labs/skills](https://github.com/vercel-labs/skills#supported-agents).
 
-### [OpenCode](https://opencode.ai)
+Después de instalar, inicia una **nueva sesión** del agente.
 
-| Ámbito | Ruta |
-|--------|------|
-| Proyecto | `.opencode/skills/tutor/` |
-| Global | `~/.config/opencode/skills/tutor/` |
+### Uso por agente
 
-OpenCode también descubre `.claude/skills/tutor/` y `.agents/skills/tutor/`.
+- **Cursor** — Pide aprender algo (p. ej. «Enséñame a crear un CLI de tareas—no lo escribas por mí») o usa `/tutor` si está disponible. [Cursor Agent Skills](https://cursor.com/docs/context/skills).
+- **Claude Code** — Ejecuta `/tutor` o describe un objetivo de aprendizaje. [Claude Code skills](https://code.claude.com/docs/en/skills).
+- **OpenCode** — Describe un objetivo; OpenCode carga skills bajo demanda. [OpenCode Agent Skills](https://opencode.ai/docs/skills/).
+
+### Instalación manual (git clone)
+
+Si prefieres no usar la CLI, clona el repo en una carpeta de skill. Las rutas varían según el agente:
+
+| Agente | Usuario (todos los proyectos) | Este proyecto |
+|--------|-------------------------------|---------------|
+| [Cursor](https://cursor.com) | `~/.cursor/skills/tutor` | `.cursor/skills/tutor` o `.agents/skills/tutor` |
+| [Claude Code](https://code.claude.com) | `~/.claude/skills/tutor` | `.claude/skills/tutor` |
+| [OpenCode](https://opencode.ai) | `~/.config/opencode/skills/tutor` | `.opencode/skills/tutor` |
 
 ```bash
-# Desde la raíz de tu proyecto
-mkdir -p .opencode/skills
-git clone https://github.com/kevin-perez/tutor.git .opencode/skills/tutor
+REPO=https://github.com/kevinnio/tutor.git
+TARGET=~/.cursor/skills/tutor   # ejemplo usuario
+
+mkdir -p "$(dirname "$TARGET")"
+git clone "$REPO" "$TARGET"
 ```
 
-Reinicia OpenCode después de añadir un directorio de skills nuevo.
+No instales en `~/.cursor/skills-cursor/` (reservado por Cursor). Si `TARGET` ya existe, bórralo o usa [Actualizar](#actualizar).
 
-Documentación: [OpenCode Agent Skills](https://opencode.ai/docs/skills/).
-
-### Otros agentes (`.agents/skills`)
-
-Muchas herramientas que siguen el esquema [Agent Skills](https://agentskills.io) buscan en:
-
-| Ámbito | Ruta |
-|--------|------|
-| Personal | `~/.agents/skills/tutor/` |
-| Proyecto | `.agents/skills/tutor/` |
+### Enlace simbólico para desarrollo local
 
 ```bash
-git clone https://github.com/kevin-perez/tutor.git ~/.agents/skills/tutor
-```
-
-### Enlace simbólico en lugar de clonar
-
-Si ya clonaste TuTor en otro sitio:
-
-```bash
-SKILL_ROOT="$HOME/code/tutor"   # tu clon
+SKILL_ROOT="$HOME/code/tutor"
 TARGET="$HOME/.cursor/skills/tutor"
 
 mkdir -p "$TARGET"
@@ -117,69 +101,65 @@ ln -sf "$SKILL_ROOT/SKILL.md" "$TARGET/SKILL.md"
 ln -sf "$SKILL_ROOT/references" "$TARGET/references"
 ```
 
+### Instalar TuTor con TuTor
+
+Como ejercicio divertido, deja que TuTor se instale contigo—tú ejecutas cada comando; él guía y comprueba tu trabajo. Aprenderás cómo se instalan las skills en disco y, cuando esté listo, siempre podrás pedirle ayuda en tareas reales.
+
+Pégalo en un agente que pueda leer URLs (chat nuevo).
+
+```text
+TuTor, instálate conmigo—yo ejecuto cada comando; tú tutoreas.
+
+Lee y sigue durante toda la sesión:
+- SKILL.md: https://raw.githubusercontent.com/kevinnio/tutor/master/SKILL.md
+- README sección Instalación: https://raw.githubusercontent.com/kevinnio/tutor/master/README.md
+
+Sigue las reglas de TuTor: un paso a la vez, desglose de comandos, verificar cuando diga "listo".
+Nunca instales por mí (sin escribir archivos, sin git clone, sin npx en mi lugar)—rechaza "hazlo tú".
+
+Primero, pregúntame qué agente de código uso (p. ej. Cursor, Claude Code, OpenCode, Codex, Windsurf)
+y si quiero instalación de usuario o local al proyecto. Usa la ruta de skills correcta para ese agente.
+
+Objetivo: skill `tutor` instalada en mi máquina.
+Enseña `npx skills add kevinnio/tutor -g -y` salvo que quiera git clone manual.
+
+Cuando responda, da un plan numerado corto para mi agente y ámbito, luego Paso 1 y detente.
+```
+
 ## Actualizar
 
-TuTor son archivos planos (`SKILL.md` + `references/`). Cómo actualizar depende de cómo lo instalaste.
+### Skills CLI (recomendado)
+
+```bash
+npx skills update tutor -g -y    # usuario (todos los proyectos)
+npx skills update tutor -y       # solo este proyecto
+```
+
+Copias instaladas: `npx skills list | grep tutor`
+
+### Clon git manual
+
+```bash
+cd ~/.cursor/skills/tutor   # tu ruta de instalación
+git pull origin master
+```
+
+**Submódulo git:** `git submodule update --remote ruta/al/tutor`
 
 ### Comprobar la versión instalada
 
 ```bash
 grep '^  version:' ~/.cursor/skills/tutor/SKILL.md
-# o la ruta que uses (ver Instalación)
+# la ruta varía — usa npx skills list para localizar instalaciones
 ```
 
-Compárala con la última `metadata.version` en [SKILL.md](SKILL.md) en GitHub.
-
-### Instalación por clon git
-
-Si la carpeta de la skill es un clon de este repo (recomendado), trae los últimos cambios:
-
-```bash
-# Ejemplo personal en Cursor — usa tu ruta real
-cd ~/.cursor/skills/tutor
-git pull origin master
-```
-
-Repite en cada ruta donde tengas un clon (p. ej. `~/.claude/skills/tutor`, `.opencode/skills/tutor`).
-
-**Instalaciones locales al proyecto**, desde la raíz del repo:
-
-```bash
-cd .cursor/skills/tutor   # o .claude/skills/tutor, etc.
-git pull origin master
-```
-
-Si TuTor es un **submódulo git**, actualiza desde el repo padre:
-
-```bash
-git submodule update --remote .cursor/skills/tutor
-```
-
-### Instalación por enlace simbólico
-
-Haz `pull` una vez en tu clon principal; los enlaces recogen los cambios solos:
-
-```bash
-cd ~/code/tutor          # tu SKILL_ROOT
-git pull origin master
-```
-
-No hace falta volver a ejecutar `ln -sf` salvo que hayas movido el clon o roto los enlaces.
-
-### Reinstalar (sin historial git)
-
-Si copiaste archivos sin git, sustituye la carpeta:
-
-```bash
-rm -rf ~/.cursor/skills/tutor
-git clone https://github.com/kevin-perez/tutor.git ~/.cursor/skills/tutor
-```
+Compárala con `metadata.version` en [SKILL.md](SKILL.md) en GitHub.
 
 ### Después de actualizar
 
-1. **Reinicia o abre una sesión nueva** del agente para que recargue la skill (obligatorio en OpenCode si el directorio de skills era nuevo; buena práctica en todos).
+1. **Reinicia o abre una sesión nueva** del agente.
 2. **Confirma la versión** con el comando `grep` de arriba.
-3. Si el comportamiento sigue siendo el antiguo, comprueba que actualizaste la ruta que tu agente usa de verdad (personal vs proyecto vs destino del enlace simbólico).
+3. Si no cambia el comportamiento, ejecuta `npx skills list` y actualiza cada ámbito (usuario vs proyecto) donde esté `tutor`.
 
 ## Cómo usar
 
@@ -232,7 +212,7 @@ No subas secretos, rutas personales ni artefactos generados (`node_modules`, pla
 
 ## Créditos
 
-- **Autor:** [kevin-perez](https://github.com/kevin-perez) (`metadata.author` en `SKILL.md`)
+- **Autor:** [Kevin Perez](https://github.com/kevinnio) (`metadata.author` en `SKILL.md`)
 - **TuTor** — skill de tutor aprender-haciendo para agentes de código con IA
 - Basado en el patrón compartido **Agent Skills** (`SKILL.md` + `references/` opcional), compatible con Cursor, Claude Code, OpenCode y `.agents/skills`
 
