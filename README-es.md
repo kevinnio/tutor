@@ -2,95 +2,95 @@
 
 [English](README.md) · **Español**
 
-Una **skill de agente** multilingüe que convierte tu asistente de código en un tutor de aprendizaje. TuTor planifica el trabajo en pasos pequeños, explica cada comando, verifica tu avance con comprobaciones de solo lectura y se niega a completar la tarea por ti.
+**Skill** multilingüe para agentes de código que convierte tu asistente en un tutor: planifica en pasos cortos, explica cada comando, revisa tu avance con herramientas de solo lectura y no termina la tarea por ti.
 
-Úsala cuando quieras **aprender haciendo**: tareas, tutoriales, guías paso a paso, o cuando digas «no lo hagas por mí».
+Úsalo cuando quieras **aprender haciendo**—tareas, tutoriales, guías paso a paso o cuando digas «no lo hagas por mí».
 
 ## Objetivo
 
-TuTor ayuda a **docentes y estudiantes** a usar la IA como tutor, no como atajo. Los asistentes de código suelen entregar respuestas terminadas y saltarse el razonamiento, la depuración y el ensayo y error donde ocurre el aprendizaje real. Esta skill redirige esa capacidad hacia el **aprender haciendo**: quien aprende escribe el código y ejecuta los comandos; el agente planifica pasos, explica herramientas y verifica el avance—sin hacer el trabajo por ellos. La meta es una comprensión más profunda en clase, en grupo y en proyectos personales, no copiar y pegar más rápido.
+TuTor ayuda a **docentes y estudiantes** a usar la IA como tutor, no como atajo. Los asistentes de código suelen entregar todo resuelto y saltarse el razonamiento, la depuración y el ensayo y error, que es donde de verdad se aprende. Esta skill redirige ese poder hacia el **aprender haciendo**: tú escribes el código y ejecutas los comandos; el agente planifica, explica y verifica—sin hacer el trabajo por ti. La idea es entender más en clase, en equipo y en proyectos propios, no copiar y pegar más rápido.
 
 ## Qué hace
 
 | Comportamiento | Detalle |
 |----------------|---------|
-| **Paso a paso** | Presenta un plan numerado al inicio; da **una** acción por turno (sin la solución completa). |
-| **Verificación** | Cuando dices que terminaste, el agente comprueba con herramientas de solo lectura (`Read`, `ls`, `cat`, `git status`, `git diff`, las pruebas que ejecutaste). |
-| **Puerta de herramientas** | El agente puede inspeccionar tu trabajo pero **no** debe crear, editar ni ejecutar comandos que construyan tu entregable por ti. |
-| **Enseñanza de comandos** | Cada comando de shell incluye un desglose: objetivo, piezas y cómo se ve el éxito. |
-| **Multilingüe** | Las explicaciones siguen tu idioma; comandos, rutas y código se mantienen literales. |
+| **Paso a paso** | Muestra un plan numerado al inicio y da **una** acción por turno (sin la solución completa). |
+| **Verificación** | Cuando dices que terminaste, el agente revisa con herramientas de solo lectura (`Read`, `ls`, `cat`, `git status`, `git diff`, las pruebas que corriste). |
+| **Control de herramientas** | Puede ver tu trabajo, pero **no** debe crear, editar ni ejecutar comandos que armen tu entregable por ti. |
+| **Comandos explicados** | Cada comando de terminal incluye desglose: para qué sirve, qué hace cada parte y cómo saber si salió bien. |
+| **Multilingüe** | Las explicaciones van en tu idioma; comandos, rutas y código se dejan tal cual. |
 
-Material de referencia opcional en [`references/`](references/):
+Más detalle en [`references/`](references/):
 
-- [`references/example-flow.md`](references/example-flow.md) — recorrido de una app desde cero
-- [`references/tool-gate.md`](references/tool-gate.md) — qué comandos de shell están permitidos
+- [`references/example-flow.md`](references/example-flow.md) — ejemplo de app desde cero
+- [`references/tool-gate.md`](references/tool-gate.md) — qué comandos de terminal están permitidos
 
 ## Instalación
 
 **Repositorio:** [github.com/kevinnio/tutor](https://github.com/kevinnio/tutor)
 
-TuTor se distribuye como `SKILL.md` más `references/`. El `name` del frontmatter debe ser `tutor`.
+TuTor son `SKILL.md` y la carpeta `references/`. En el frontmatter, `name` debe ser `tutor`.
 
-### Instalar con Skills CLI (recomendado)
+### Con Skills CLI (recomendado)
 
-Usa la [Skills CLI](https://github.com/vercel-labs/skills) ([skills.sh](https://skills.sh)) para instalar en tus agentes de código. Detecta las herramientas instaladas y escribe en los directorios correctos.
+Usa la [Skills CLI](https://github.com/vercel-labs/skills) ([skills.sh](https://skills.sh)): detecta qué agentes tienes instalados y copia la skill donde corresponde.
 
-**Usuario (todos los proyectos)** — recomendado la primera vez:
+**Global (todos tus proyectos)** — lo más práctico la primera vez:
 
 ```bash
 npx skills add kevinnio/tutor -g -y
 ```
 
-**Solo este proyecto** (comparte con clase o equipo vía git):
+**Solo este repositorio** (para compartir con tu clase o equipo vía git):
 
 ```bash
 npx skills add kevinnio/tutor -y
 ```
 
-**Agentes concretos** (sin el selector interactivo):
+**Agentes específicos** (sin el menú interactivo):
 
 ```bash
 npx skills add kevinnio/tutor -g -a cursor -a claude-code -a opencode -y
 ```
 
-| Flag | Significado |
-|------|-------------|
-| `-g`, `--global` | Instalación de usuario (`~/…/skills/`) |
-| (sin `-g`) | Solo en el proyecto actual |
-| `-a`, `--agent` | Agente(s), p. ej. `cursor`, `claude-code`, `opencode`, `codex`, `windsurf` |
-| `-y`, `--yes` | Sin preguntas interactivas |
+| Opción | Qué hace |
+|--------|----------|
+| `-g`, `--global` | Instalación global en tu usuario (`~/…/skills/`) |
+| (sin `-g`) | Solo en el proyecto donde estás |
+| `-a`, `--agent` | Uno o más agentes: `cursor`, `claude-code`, `opencode`, `codex`, `windsurf`, etc. |
+| `-y`, `--yes` | Sin pedir confirmación |
 
-Vista previa: `npx skills add kevinnio/tutor --list`. Lista de agentes: [vercel-labs/skills](https://github.com/vercel-labs/skills#supported-agents).
+Antes de instalar: `npx skills add kevinnio/tutor --list`. Lista completa de agentes: [vercel-labs/skills](https://github.com/vercel-labs/skills#supported-agents).
 
-Después de instalar, inicia una **nueva sesión** del agente.
+Al terminar, abre una **sesión nueva** del agente.
 
-### Uso por agente
+### Uso según el agente
 
-- **Cursor** — Pide aprender algo (p. ej. «Enséñame a crear un CLI de tareas—no lo escribas por mí») o usa `/tutor` si está disponible. [Cursor Agent Skills](https://cursor.com/docs/context/skills).
-- **Claude Code** — Ejecuta `/tutor` o describe un objetivo de aprendizaje. [Claude Code skills](https://code.claude.com/docs/en/skills).
-- **OpenCode** — Describe un objetivo; OpenCode carga skills bajo demanda. [OpenCode Agent Skills](https://opencode.ai/docs/skills/).
+- **Cursor** — Pide aprender algo (p. ej. «Enséñame a hacer un CLI de tareas, pero no lo escribas tú») o usa `/tutor` si lo tienes. [Cursor Agent Skills](https://cursor.com/docs/context/skills).
+- **Claude Code** — Ejecuta `/tutor` o cuéntale qué quieres aprender. [Claude Code skills](https://code.claude.com/docs/en/skills).
+- **OpenCode** — Describe qué quieres aprender; OpenCode carga las skills cuando hacen falta. [OpenCode Agent Skills](https://opencode.ai/docs/skills/).
 
 ### Instalación manual (git clone)
 
-Si prefieres no usar la CLI, clona el repo en una carpeta de skill. Las rutas varían según el agente:
+Si no quieres usar la CLI, clona el repo en la carpeta de la skill. Las rutas cambian según el agente:
 
-| Agente | Usuario (todos los proyectos) | Este proyecto |
-|--------|-------------------------------|---------------|
+| Agente | Global | Este proyecto |
+|--------|--------|---------------|
 | [Cursor](https://cursor.com) | `~/.cursor/skills/tutor` | `.cursor/skills/tutor` o `.agents/skills/tutor` |
 | [Claude Code](https://code.claude.com) | `~/.claude/skills/tutor` | `.claude/skills/tutor` |
 | [OpenCode](https://opencode.ai) | `~/.config/opencode/skills/tutor` | `.opencode/skills/tutor` |
 
 ```bash
 REPO=https://github.com/kevinnio/tutor.git
-TARGET=~/.cursor/skills/tutor   # ejemplo usuario
+TARGET=~/.cursor/skills/tutor   # ejemplo global
 
 mkdir -p "$(dirname "$TARGET")"
 git clone "$REPO" "$TARGET"
 ```
 
-No instales en `~/.cursor/skills-cursor/` (reservado por Cursor). Si `TARGET` ya existe, bórralo o usa [Actualizar](#actualizar).
+No instales en `~/.cursor/skills-cursor/` (Cursor lo reserva). Si `TARGET` ya existe, bórralo o ve a [Actualizar](#actualizar).
 
-### Enlace simbólico para desarrollo local
+### Enlace simbólico (desarrollo local)
 
 ```bash
 SKILL_ROOT="$HOME/code/tutor"
@@ -103,70 +103,70 @@ ln -sf "$SKILL_ROOT/references" "$TARGET/references"
 
 ### Instalar TuTor con TuTor
 
-Como ejercicio divertido, deja que TuTor se instale contigo—tú ejecutas cada comando; él guía y comprueba tu trabajo. Aprenderás cómo se instalan las skills en disco y, cuando esté listo, siempre podrás pedirle ayuda en tareas reales.
+Como ejercicio, deja que TuTor te guíe para instalarlo: tú ejecutas cada comando y el agente te orienta y revisa. Así ves cómo quedan las skills en disco y, cuando termine, ya puedes usarlo en tareas reales.
 
-Pégalo en un agente que pueda leer URLs (chat nuevo).
+Pega esto en un agente que pueda leer URLs (mejor en un chat nuevo):
 
 ```text
-TuTor, instálate conmigo—yo ejecuto cada comando; tú tutoreas.
+TuTor, instálate conmigo: yo ejecuto cada comando y tú actúas como tutor.
 
-Lee y sigue durante toda la sesión:
+Lee y aplica durante toda la sesión:
 - SKILL.md: https://raw.githubusercontent.com/kevinnio/tutor/master/SKILL.md
-- README sección Instalación: https://raw.githubusercontent.com/kevinnio/tutor/master/README.md
+- README, sección Instalación: https://raw.githubusercontent.com/kevinnio/tutor/master/README.md
 
-Sigue las reglas de TuTor: un paso a la vez, desglose de comandos, verificar cuando diga "listo".
-Nunca instales por mí (sin escribir archivos, sin git clone, sin npx en mi lugar)—rechaza "hazlo tú".
+Reglas de TuTor: un paso a la vez, desglosa los comandos, verifica cuando diga "listo".
+No instales por mí (no escribas archivos, no hagas git clone ni npx)—si pido "hazlo tú", rechaza.
 
-Primero, pregúntame qué agente de código uso (p. ej. Cursor, Claude Code, OpenCode, Codex, Windsurf)
-y si quiero instalación de usuario o local al proyecto. Usa la ruta de skills correcta para ese agente.
+Primero pregúntame qué agente uso (Cursor, Claude Code, OpenCode, Codex, Windsurf, etc.)
+y si quiero instalación global o solo en este proyecto. Usa la ruta de skills correcta.
 
-Objetivo: skill `tutor` instalada en mi máquina.
-Enseña `npx skills add kevinnio/tutor -g -y` salvo que quiera git clone manual.
+Objetivo: tener la skill `tutor` en mi máquina.
+Enséñame `npx skills add kevinnio/tutor -g -y` salvo que prefiera git clone manual.
 
-Cuando responda, da un plan numerado corto para mi agente y ámbito, luego Paso 1 y detente.
+Cuando responda, dame un plan corto numerado y el Paso 1; ahí te detienes.
 ```
 
 ## Actualizar
 
-### Skills CLI (recomendado)
+### Con Skills CLI (recomendado)
 
 ```bash
-npx skills update tutor -g -y    # usuario (todos los proyectos)
-npx skills update tutor -y       # solo este proyecto
+npx skills update tutor -g -y    # global
+npx skills update tutor -y         # solo este proyecto
 ```
 
-Copias instaladas: `npx skills list | grep tutor`
+Para ver dónde está instalada: `npx skills list | grep tutor`
 
-### Clon git manual
+### Con git (instalación manual)
 
 ```bash
-cd ~/.cursor/skills/tutor   # tu ruta de instalación
+cd ~/.cursor/skills/tutor   # tu ruta
 git pull origin master
 ```
 
-**Submódulo git:** `git submodule update --remote ruta/al/tutor`
+Si es **submódulo**: `git submodule update --remote ruta/al/tutor`
 
-### Comprobar la versión instalada
+### Revisar la versión instalada
 
 ```bash
 grep '^  version:' ~/.cursor/skills/tutor/SKILL.md
-# la ruta varía — usa npx skills list para localizar instalaciones
+# la ruta puede variar; usa npx skills list
 ```
 
 Compárala con `metadata.version` en [SKILL.md](SKILL.md) en GitHub.
 
 ### Después de actualizar
 
-1. **Reinicia o abre una sesión nueva** del agente.
-2. **Confirma la versión** con el comando `grep` de arriba.
-3. Si no cambia el comportamiento, ejecuta `npx skills list` y actualiza cada ámbito (usuario vs proyecto) donde esté `tutor`.
+1. **Abre una sesión nueva** del agente.
+2. **Confirma la versión** con el `grep` de arriba.
+3. Si no notas cambios, ejecuta `npx skills list` y actualiza en cada sitio (global y proyecto) donde aparezca `tutor`.
 
-## Cómo usar
+## Cómo usarlo
 
 1. **Instala** la skill (arriba) y abre tu proyecto en el agente.
-2. **Di qué quieres aprender** y que el agente debe tutorear, no implementar por ti.
+2. **Di qué quieres aprender** y que te guíe, no que lo haga por ti.
 
-Ejemplos de prompts:
+Ejemplos de mensajes:
 
 ```text
 I want to learn how to add tests to this repo. Walk me through it step by step; don't edit files for me.
@@ -176,52 +176,61 @@ Enséñame a crear un API REST con Express. No hagas el código por mí.
 Help me fix this failing test, but only give hints and commands—I run everything myself.
 ```
 
-3. **Haz cada paso** que asigne el tutor y responde cuando termines (p. ej. «done», «listo»).
-4. El tutor **verifica** antes de seguir. Si algo falla, indica qué falta—no avanza.
-5. Si el agente intenta hacer tu trabajo, recuérdale: *«Sigue la skill tutor—solo verifica, yo ejecuto los comandos.»*
+3. **Sigue cada paso** que te indique y avisa cuando termines (p. ej. «listo», «done»).
+4. El tutor **revisa** antes de seguir. Si algo falla, te dice qué falta; no pasa al siguiente paso.
+5. Si el agente intenta hacerlo por ti, recuérdale: *«Sigue la skill tutor: solo verifica, yo ejecuto los comandos.»*
 
 ## Estructura del repositorio
 
 ```text
 tutor/
 ├── SKILL.md              # Skill principal (obligatorio)
-├── references/           # Referencia opcional para el agente
+├── references/           # Material de apoyo para el agente
 │   ├── example-flow.md
 │   └── tool-gate.md
 ├── README.md
 ├── README-es.md
-├── AGENTS.md             # Instrucciones para agentes que editan este repo
-├── AUTHORS.md            # Autores del proyecto
+├── AGENTS.md             # Guía para agentes que editan este repo
+├── AUTHORS.md            # Contribuidores
 └── LICENSE               # MIT
 ```
 
-La versión se declara en el frontmatter de `SKILL.md` (`metadata.version`, actualmente **0.4**).
+La versión va en el frontmatter de `SKILL.md` (`metadata.version`, hoy **0.4**).
 
 ## Contribuir
 
-Las contribuciones son bienvenidas—sobre todo patrones de enseñanza más claros, casos límite de la puerta de herramientas y traducciones de flujos de ejemplo.
+Nos encanta recibir ideas, reportes y código.
 
-1. **Haz fork** del repositorio y crea una rama (`git checkout -b fix/tool-gate-example`).
-2. **Modifica** `SKILL.md` y/o archivos en `references/`. Mantén la skill enfocada; evita hinchar el archivo principal—pon ejemplos largos en `references/`.
-3. **Prueba** instalando tu rama en un agente (Cursor, Claude Code u OpenCode) y haciendo una tarea de aprendizaje corta.
-4. **Abre un pull request** con:
-   - Qué comportamiento cambió y por qué
-   - En qué agente(s) probaste
-   - Cualquier cambio incompatible en rutas de instalación o nombre de la skill (`tutor` debe coincidir con el nombre de la carpeta en OpenCode)
+- **Errores y nuevas funciones** — [abre un issue](https://github.com/kevinnio/tutor/issues/new). Cuéntanos qué esperabas, qué pasó y qué agente usas.
+- **Código y documentación** — manda un [pull request](https://github.com/kevinnio/tutor/compare). Por ejemplo: mejores formas de enseñar, casos raros del control de herramientas, traducciones del README o notas de instalación para otros agentes.
 
-No subas secretos, rutas personales ni artefactos generados (`node_modules`, playground, etc.).
+### Cómo enviar un pull request
 
-## Créditos
+1. Haz **fork** del repo y crea una rama (`git checkout -b fix/tool-gate-example`).
+2. Edita `SKILL.md` y/o `references/`. Mantén la skill concisa; los ejemplos largos van en `references/`.
+3. **Pruébalo** instalando tu rama en un agente (Cursor, Claude Code u OpenCode) con una tarea corta de aprendizaje.
+4. Abre el **pull request** indicando:
+   - Qué cambió y por qué
+   - En qué agente(s) lo probaste
+   - Si rompe rutas de instalación o el nombre `tutor` (en OpenCode debe coincidir con la carpeta)
 
-[Kevin Perez](https://github.com/kevinnio), [Manuel Ceja](https://github.com/xManueldyx)
+No subas secretos, rutas personales ni `node_modules` ni archivos del playground.
+
+## Contribuidores
+
+<a href="https://github.com/kevinnio/tutor/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=kevinnio/tutor&columns=3" alt="Contribuidores" />
+</a>
+
+Las fotos salen de los [contribuidores en GitHub](https://github.com/kevinnio/tutor/graphs/contributors), generadas con [contrib.rocks](https://contrib.rocks) (contributors-img). Nombres y perfiles: [AUTHORS.md](AUTHORS.md).
 
 ## Donaciones
 
-Si TuTor te ayuda a aprender, puedes invitarme un café por PayPal:
+Si TuTor te sirve para aprender, puedes invitarme un café por PayPal:
 
 **[paypal.me/kevindperezm](https://paypal.me/kevindperezm?locale.x=es_XC&country.x=MX)**
 
-Las donaciones son opcionales y no son necesarias para usar ni contribuir al proyecto.
+Donar es opcional; no hace falta para usar el proyecto ni para contribuir.
 
 ## Licencia
 
