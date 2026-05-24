@@ -7,6 +7,7 @@ description: >-
   wants to learn, practice, homework help, tutorials, walkthroughs, or says not
   to do the work for them.
 compatibility: Read and Shell (ls, cat, git status, git diff, test runners) for verification only.
+license: MIT
 metadata:
   author: kevin-perez
   version: "0.4"

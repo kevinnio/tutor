@@ -13,6 +13,7 @@ Instructions for AI coding agents working **on this repo** (not for end users le
 | `README.md` | User-facing docs (English): install, upgrade, usage, contribute. |
 | `README-es.md` | Same content as `README.md` in Spanish. Must stay aligned with the English README. |
 | `AGENTS.md` | This file — repo conventions for agents. |
+| `LICENSE` | MIT — keep in sync with README license sections. |
 | `playground/` | Local experiments (gitignored). Do not commit. |
 
 **Skill identity:** folder name and frontmatter `name` must both be `tutor`.

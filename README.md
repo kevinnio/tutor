@@ -206,7 +206,8 @@ tutor/
 │   └── tool-gate.md
 ├── README.md
 ├── README-es.md
-└── AGENTS.md             # Instructions for agents editing this repo
+├── AGENTS.md             # Instructions for agents editing this repo
+└── LICENSE               # MIT
 ```
 
 Version is declared in `SKILL.md` frontmatter (`metadata.version`, currently **0.4**).
@@ -241,4 +242,4 @@ Donations are optional and not required to use or contribute to this project.
 
 ## License
 
-No license file is included yet. If you plan to redistribute or fork commercially, open an issue or contact the author for clarification.
+[MIT](LICENSE) — Copyright (c) 2026 Kevin Perez
