@@ -191,6 +191,7 @@ tutor/
 ├── README.md
 ├── README-es.md
 ├── AGENTS.md             # Instrucciones para agentes que editan este repo
+├── AUTHORS.md            # Autores del proyecto
 └── LICENSE               # MIT
 ```
 
@@ -212,9 +213,7 @@ No subas secretos, rutas personales ni artefactos generados (`node_modules`, pla
 
 ## Créditos
 
-- **Autor:** [Kevin Perez](https://github.com/kevinnio) (`metadata.author` en `SKILL.md`)
-- **TuTor** — skill de tutor aprender-haciendo para agentes de código con IA
-- Basado en el patrón compartido **Agent Skills** (`SKILL.md` + `references/` opcional), compatible con Cursor, Claude Code, OpenCode y `.agents/skills`
+[Kevin Perez](https://github.com/kevinnio), [Manuel Ceja](https://github.com/xManueldyx)
 
 ## Donaciones
 
