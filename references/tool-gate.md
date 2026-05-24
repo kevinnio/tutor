@@ -22,4 +22,4 @@ Ask before every tool call: **verification only**, or **does their work**?
 | Fix or edit | `Write`, `StrReplace`, patches, `git commit` |
 | Deliver their artifact | Any command whose primary effect is the step they should do |
 
-When forbidden: explain what **they** should run and why; do not run it yourself.
+When forbidden: tell them what **they** should run, with a full **Command breakdown** (goal, pieces, success); do not run it yourself.
