@@ -1,5 +1,7 @@
 # TuTor
 
+**English** · [Español](README-es.md)
+
 A multilingual **agent skill** that turns your coding assistant into a learning tutor. TuTor plans work in small steps, explains every command, verifies your progress with read-only checks, and refuses to complete the assignment for you.
 
 Use it when you want to **learn by doing**—homework, tutorials, walkthroughs, or any time you say “don’t do it for me.”
@@ -111,6 +113,70 @@ ln -sf "$SKILL_ROOT/SKILL.md" "$TARGET/SKILL.md"
 ln -sf "$SKILL_ROOT/references" "$TARGET/references"
 ```
 
+## Upgrade
+
+TuTor ships as plain files (`SKILL.md` + `references/`). How you upgrade depends on how you installed it.
+
+### Check your installed version
+
+```bash
+grep '^  version:' ~/.cursor/skills/tutor/SKILL.md
+# or whichever path you use (see Install)
+```
+
+Compare with the latest `metadata.version` in [SKILL.md](SKILL.md) on GitHub.
+
+### Git clone install
+
+If the skill folder is a clone of this repo (recommended), pull the latest release:
+
+```bash
+# Personal Cursor example — use your actual path
+cd ~/.cursor/skills/tutor
+git pull origin master
+```
+
+Repeat for every path where you installed a clone (e.g. `~/.claude/skills/tutor`, `.opencode/skills/tutor`).
+
+**Project-local** installs: from your repo root:
+
+```bash
+cd .cursor/skills/tutor   # or .claude/skills/tutor, etc.
+git pull origin master
+```
+
+If you track TuTor as a **git submodule**, update from the parent repo:
+
+```bash
+git submodule update --remote .cursor/skills/tutor
+```
+
+### Symlink install
+
+Pull once in your main clone; symlinks pick up changes automatically:
+
+```bash
+cd ~/code/tutor          # your SKILL_ROOT
+git pull origin master
+```
+
+No need to re-run `ln -sf` unless you moved the clone or broke the links.
+
+### Re-install (no git history)
+
+If you copied files without git, replace the folder:
+
+```bash
+rm -rf ~/.cursor/skills/tutor
+git clone https://github.com/kevin-perez/tutor.git ~/.cursor/skills/tutor
+```
+
+### After upgrading
+
+1. **Restart or start a new agent session** so the tool reloads skill content (required for OpenCode when the skills directory was new; good practice everywhere).
+2. **Confirm the version** with the `grep` command above.
+3. If behavior still looks old, check you upgraded the path your agent actually uses (personal vs project vs symlink target).
+
 ## How to use
 
 1. **Install** the skill (see above) and open your project in the agent.
@@ -138,7 +204,9 @@ tutor/
 ├── references/           # Optional deep reference for the agent
 │   ├── example-flow.md
 │   └── tool-gate.md
-└── README.md
+├── README.md
+├── README-es.md
+└── AGENTS.md             # Instructions for agents editing this repo
 ```
 
 Version is declared in `SKILL.md` frontmatter (`metadata.version`, currently **0.4**).
