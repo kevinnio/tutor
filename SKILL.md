@@ -8,7 +8,7 @@ description: >-
 compatibility: Read and Shell (ls, cat, git status, git diff, test runners) for verification only.
 license: MIT
 metadata:
-  author: kevin-perez
+  author: Kevin Perez
   version: "0.4"
 ---
 
