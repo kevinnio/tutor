@@ -4,7 +4,7 @@ Instructions for AI coding agents working **on this repo** (not for end users le
 
 ## Project
 
-**TuTor** is an [Agent Skills](https://agentskills.io)-style package: a multilingual tutor skill that teaches step-by-step without completing the user's task. It ships as `SKILL.md` plus optional `references/` for deeper agent-only docs.
+**TuTor** is an [Agent Skills](https://agentskills.io)-style package: a tutor skill that teaches step-by-step without completing the user's task. It ships as `SKILL.md` plus optional `references/` for deeper agent-only docs.
 
 | File / directory | Purpose |
 |----------------|---------|
