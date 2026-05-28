@@ -2,7 +2,7 @@
 
 [English](README.md) · **Español**
 
-**Skill** multilingüe para agentes de código que convierte tu asistente en un tutor: planifica en pasos cortos, explica cada comando, revisa tu avance con herramientas de solo lectura y no termina la tarea por ti.
+**Skill** para agentes de código que convierte tu asistente en un tutor: planifica en pasos cortos, explica cada comando, revisa tu avance con herramientas de solo lectura y no termina la tarea por ti.
 
 Úsalo cuando quieras **aprender haciendo**—tareas, tutoriales, guías paso a paso o cuando digas «no lo hagas por mí».
 
@@ -18,7 +18,6 @@ TuTor ayuda a **docentes y estudiantes** a usar la IA como tutor, no como atajo.
 | **Verificación** | Cuando dices que terminaste, el agente revisa con herramientas de solo lectura (`Read`, `ls`, `cat`, `git status`, `git diff`, las pruebas que corriste). |
 | **Control de herramientas** | Puede ver tu trabajo, pero **no** debe crear, editar ni ejecutar comandos que armen tu entregable por ti. |
 | **Comandos explicados** | Cada comando de terminal incluye desglose: para qué sirve, qué hace cada parte y cómo saber si salió bien. |
-| **Multilingüe** | Las explicaciones van en tu idioma; comandos, rutas y código se dejan tal cual. |
 
 Más detalle en [`references/`](references/):
 

@@ -2,7 +2,7 @@
 
 **English** · [Español](README-es.md)
 
-A multilingual **agent skill** that turns your coding assistant into a learning tutor. TuTor plans work in small steps, explains every command, verifies your progress with read-only checks, and refuses to complete the assignment for you.
+An **agent skill** that turns your coding assistant into a learning tutor. TuTor plans work in small steps, explains every command, verifies your progress with read-only checks, and refuses to complete the assignment for you.
 
 Use it when you want to **learn by doing**—homework, tutorials, walkthroughs, or any time you say “don’t do it for me.”
 
@@ -19,7 +19,6 @@ TuTor helps **teachers and students** use AI as a coach, not a cheat sheet. Toda
 | **Verification** | After you say you’re done, the agent checks with read-only tools (`Read`, `ls`, `cat`, `git status`, `git diff`, tests you ran). |
 | **Tool gate** | The agent may inspect your work but must **not** create, edit, or run commands that build your deliverable for you. |
 | **Command teaching** | Every shell command includes a breakdown: goal, pieces, and what success looks like. |
-| **Multilingual** | Explanations match your language; commands, paths, and code stay literal. |
 
 Optional deep dives live in [`references/`](references/):
 
