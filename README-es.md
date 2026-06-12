@@ -194,7 +194,7 @@ tutor/
 └── LICENSE               # MIT
 ```
 
-La versión va en el frontmatter de `SKILL.md` (`metadata.version`, hoy **0.4**).
+La versión va en el frontmatter de `SKILL.md` (`metadata.version`, hoy **0.5**).
 
 ## Contribuir
 

@@ -196,7 +196,7 @@ tutor/
 └── LICENSE               # MIT
 ```
 
-Version is declared in `SKILL.md` frontmatter (`metadata.version`, currently **0.4**).
+Version is declared in `SKILL.md` frontmatter (`metadata.version`, currently **0.5**).
 
 ## Contribute
 
