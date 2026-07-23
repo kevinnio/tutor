@@ -75,6 +75,7 @@ Do not create commits unless the user explicitly requests them.
 - Install the skill from this repo into one target path (e.g. `~/.cursor/skills/tutor` via clone or symlink).
 - Run a short “teach me X, don’t do it for me” session and confirm verify-only behavior.
 - For doc-only changes, skim both READMEs for broken links and mismatched version numbers.
+- CI (`.github/workflows/security.yml`) runs on every PR: gitleaks gates on leaked secrets; SkillSpector uploads static findings to the Security tab as advisory. Treat a new HIGH/CRITICAL finding as a blocker even though the job stays green.
 
 ## Links
 

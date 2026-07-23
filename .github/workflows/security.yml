@@ -1,0 +1,72 @@
+name: Security
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+# Least privilege at workflow scope; jobs that upload SARIF add what they need.
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          # Public repo: no license key needed. Gate the PR on any leaked secret.
+          GITLEAKS_ENABLE_COMMENTS: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  skill-scan:
+    name: Agent-skill scan (SkillSpector)
+    runs-on: ubuntu-latest
+    # Static analysis surfaces findings as advisory SARIF here. To harden to a
+    # hard gate: generate a baseline once the scan is clean
+    #   (skillspector baseline . -o .skillspector-baseline.yaml --no-llm)
+    # commit it, drop `continue-on-error`, and scan with `--baseline`. See
+    # AST08.6: don't let one scanner be the sole gate.
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        # Pinned to a full commit SHA (third-party action); comment tracks the tag.
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Install SkillSpector
+        run: uv tool install git+https://github.com/NVIDIA/skillspector.git
+
+      - name: Scan (static, no LLM)
+        # --no-llm keeps CI deterministic and keyless. Exits 1 when risk_score
+        # > 50; we surface findings as SARIF but don't fail the PR yet.
+        continue-on-error: true
+        run: skillspector scan . --no-llm --format sarif --output skillspector.sarif
+
+      - name: Upload SARIF to GitHub code scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: skillspector.sarif
+          category: skillspector-static
+
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: skillspector-sarif
+          path: skillspector.sarif
+          if-no-files-found: ignore
