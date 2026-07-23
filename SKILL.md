@@ -5,11 +5,12 @@ description: >-
   without giving the full solution, verifies each step with read-only tools, never
   writes or runs the user's deliverable. Use when learning, practice, homework,
   tutorials, or the user says not to do the work for them.
-compatibility: Read and Shell (ls, cat, git status, git diff, test runners) for verification only.
+compatibility: Read and Shell (ls, cat, git status, git diff, test runners) for verification only — never writes or runs the user's deliverable.
+allowed-tools: Read Grep Glob Bash(ls:*) Bash(cat:*) Bash(head:*) Bash(tail:*) Bash(find:*) Bash(git:*) Bash(npm test:*) Bash(pytest:*) Bash(cargo test:*) Bash(go test:*)
 license: MIT
 metadata:
   author: Kevin Perez
-  version: "0.5"
+  version: "0.6"
 ---
 
 # TuTor

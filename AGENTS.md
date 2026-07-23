@@ -21,6 +21,8 @@ Instructions for AI coding agents working **on this repo** (not for end users le
 
 **Current version:** see `metadata.version` in `SKILL.md` (bump when behavior or compatibility meaningfully changes).
 
+**Tool-gate declaration:** `SKILL.md` frontmatter uses only Agent Skills standard fields — `compatibility` documents the read-only verification constraint; `allowed-tools` (experimental in the spec) pre-approves read-only verification tools so checks don't prompt where supported. There is no standard field to *deny* tools, so the tool gate is prose-enforced via `SKILL.md` + `references/tool-gate.md` (the agent must refuse forbidden commands). Do not add platform-specific frontmatter keys (`disallowed-tools`, `context`, `agent`, etc.) — keep the skill cross-platform.
+
 ## Editing conventions
 
 1. **Behavior changes** → edit `SKILL.md` and/or `references/`. Prefer `references/` for long walkthroughs or tables.
@@ -58,7 +60,9 @@ When bumping `metadata.version` in `SKILL.md`:
 
 1. Increment the version string in frontmatter.
 2. Update the “currently **X.Y**” (or equivalent) line in **both** READMEs.
-3. Mention the version in the commit message if the user asked for commits.
+3. Update the pinned release tag in **both** READMEs’ “Install TuTor via TuTor” exercise (`v0.6` → `vX.Y`), and in the “Pin to a release tag” snippet if the example tag is referenced.
+4. Create a git tag `vX.Y` on the resulting commit and push it (`git tag vX.Y && git push origin vX.Y`). Tags are the immutable pins users install from.
+5. Mention the version in the commit message if the user asked for commits.
 
 ## Commits
 

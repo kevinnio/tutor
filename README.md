@@ -107,13 +107,15 @@ As a fun exercise, have TuTor install itself with you—you run every command; i
 
 Paste this into a coding agent that can read URLs (new chat).
 
+**Trust note:** this prompt asks your agent to fetch instructions from the internet (`raw.githubusercontent.com`), pinned to release tag `v0.6` (immutable). Only run it from a source you trust — a skill you install can influence what your agent does in future sessions. Prefer the manual install steps above if you don't want remote instructions fetched.
+
 ```text
 TuTor, install yourself with me—I run every command; you tutor.
 
 Read and follow for this entire session:
 
-- SKILL.md: https://raw.githubusercontent.com/kevinnio/tutor/master/SKILL.md
-- README Install section: https://raw.githubusercontent.com/kevinnio/tutor/master/README.md
+- SKILL.md: https://raw.githubusercontent.com/kevinnio/tutor/v0.6/SKILL.md
+- README Install section: https://raw.githubusercontent.com/kevinnio/tutor/v0.6/README.md
 
 Follow TuTor’s rules: one step at a time, command breakdowns, verify after I say "done".
 Never install for me (no writing skill files, no git clone, no npx on my behalf)—refuse "just do it."
@@ -146,6 +148,19 @@ git pull origin master
 ```
 
 For a **git submodule**: `git submodule update --remote path/to/tutor`
+
+### Pin to a release tag (reproducible install)
+
+Release tags are immutable. To install an exact audited version instead of `master`:
+
+```bash
+# fresh clone
+git clone --branch v0.6 https://github.com/kevinnio/tutor.git "$TARGET"
+# or, inside an existing clone
+git fetch --tags && git checkout v0.6
+```
+
+Verify the pinned version: `git describe --tags`
 
 ### Check your installed version
 
@@ -196,7 +211,7 @@ tutor/
 └── LICENSE               # MIT
 ```
 
-Version is declared in `SKILL.md` frontmatter (`metadata.version`, currently **0.5**).
+Version is declared in `SKILL.md` frontmatter (`metadata.version`, currently **0.6**). Releases are tagged `v<version>` (e.g. `v0.6`); pin to a tag for a reproducible install.
 
 ## Contribute
 

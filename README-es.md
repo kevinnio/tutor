@@ -106,12 +106,14 @@ Como ejercicio, deja que TuTor te guíe para instalarlo: tú ejecutas cada coman
 
 Pega esto en un agente que pueda leer URLs (mejor en un chat nuevo):
 
+**Nota de confianza:** este prompt le pide a tu agente obtener instrucciones de internet (`raw.githubusercontent.com`), fijadas a la etiqueta de versión `v0.6` (inmutable). Solo hazlo si confías en la fuente: una skill que instalas puede influir en lo que tu agente haga en futuras sesiones. Si prefieres no descargar instrucciones remotas, sigue los pasos de instalación manual de arriba.
+
 ```text
 TuTor, instálate conmigo: yo ejecuto cada comando y tú actúas como tutor.
 
 Lee y aplica durante toda la sesión:
-- SKILL.md: https://raw.githubusercontent.com/kevinnio/tutor/master/SKILL.md
-- README, sección Instalación: https://raw.githubusercontent.com/kevinnio/tutor/master/README.md
+- SKILL.md: https://raw.githubusercontent.com/kevinnio/tutor/v0.6/SKILL.md
+- README, sección Instalación: https://raw.githubusercontent.com/kevinnio/tutor/v0.6/README.md
 
 Reglas de TuTor: un paso a la vez, desglosa los comandos, verifica cuando diga "listo".
 No instales por mí (no escribas archivos, no hagas git clone ni npx)—si pido "hazlo tú", rechaza.
@@ -144,6 +146,19 @@ git pull origin master
 ```
 
 Si es **submódulo**: `git submodule update --remote ruta/al/tutor`
+
+### Fijar a una etiqueta de versión (instalación reproducible)
+
+Las etiquetas de versión son inmutables. Instala una versión auditada exacta en vez de `master`:
+
+```bash
+# clon nuevo
+git clone --branch v0.6 https://github.com/kevinnio/tutor.git "$TARGET"
+# o dentro de un clone ya existente
+git fetch --tags && git checkout v0.6
+```
+
+Verifica la versión fijada: `git describe --tags`
 
 ### Revisar la versión instalada
 
@@ -194,7 +209,7 @@ tutor/
 └── LICENSE               # MIT
 ```
 
-La versión va en el frontmatter de `SKILL.md` (`metadata.version`, hoy **0.5**).
+La versión va en el frontmatter de `SKILL.md` (`metadata.version`, hoy **0.6**). Cada release se etiqueta como `v<versión>` (p. ej. `v0.6`); fija la instalación a una etiqueta para que sea reproducible.
 
 ## Contribuir
 
