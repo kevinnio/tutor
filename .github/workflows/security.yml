@@ -18,10 +18,10 @@ jobs:
     name: Secret scan (gitleaks)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
+      - uses: gitleaks/gitleaks-action@v3
         env:
           # Public repo: no license key needed. Gate the PR on any leaked secret.
           GITLEAKS_ENABLE_COMMENTS: true
@@ -39,11 +39,11 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up uv
         # Pinned to a full commit SHA (third-party action); comment tracks the tag.
-        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9
         with:
           python-version: "3.12"
 
@@ -65,7 +65,7 @@ jobs:
 
       - name: Upload report artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: skillspector-sarif
           path: skillspector.sarif
